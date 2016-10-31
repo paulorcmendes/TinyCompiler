@@ -157,9 +157,9 @@ TokenType getToken(void)
            currentToken = ASSIGN;
          else
          { /* backup in the input */
-           ungetNextChar();
-           save = FALSE;
-           currentToken = ERROR;
+           //ungetNextChar();
+           //save = FALSE;
+			  currentToken = COLON;//currentToken = ERROR;
          }
          break;
        case INNUM:

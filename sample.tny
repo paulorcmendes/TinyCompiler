@@ -11,8 +11,8 @@ if 0 < x then
 	until x = 0;
 	write fact
 	switch x1
-		case 1
-		case 2
-		case 3
+		case: 1
+		case: 2
+		case: 3
 	endswitch
 end
