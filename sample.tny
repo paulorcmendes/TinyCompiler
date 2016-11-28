@@ -9,10 +9,9 @@ if 0 < x then
 		fact := fact * x;
 		x := x - 1
 	until x = 0;
-	write fact
-	switch x1
-		case: 1
-		case: 2
-		case: 3
+	write fact;
+	switch (x1)
+		case 1:
+		 xwelt456 := x - 1
 	endswitch
 end
