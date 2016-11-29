@@ -102,7 +102,7 @@ TreeNode * repeat_stmt(void)
 
 static TreeNode * switch_stmt(void)
 { TreeNode * t = newStmtNode(SwitchK);
-  TreeNode * p = t;
+  TreeNode * p;
   TreeNode * q;
   match(SWITCH);
   match(LPAREN);
@@ -114,17 +114,25 @@ static TreeNode * switch_stmt(void)
      t->child[0] = newStmtNode(CaseK);
      p = t->child[0];
 	  match(CASE);
+	  if ((p!=NULL) && (token==NUM)){
+	  	p->child[0] = newExpNode(ConstK);
+        p->child[0]->attr.val = atoi(tokenString);
+      }
 	  match(NUM);
 	  match(COLON);
-	  if (p!=NULL) p->child[0] = stmt_sequence();
+	  if (p!=NULL) p->child[1] = stmt_sequence();
   }
   while(token == CASE){
 	  p->sibling = newStmtNode(CaseK);
-     q = p->sibling;
+      q = p->sibling;
 	  match(CASE);
+	  if ((q!=NULL) && (token==NUM)){
+	  	q->child[0] = newExpNode(ConstK);
+        q->child[0]->attr.val = atoi(tokenString);
+      }
 	  match(NUM);
 	  match(COLON);
-	  if (q!=NULL) q->child[0] = stmt_sequence();	  
+	  if (q!=NULL) q->child[1] = stmt_sequence();	  
 	  p = p->sibling;
   }
   

@@ -145,7 +145,7 @@ void printTree( TreeNode * tree )
           fprintf(listing,"Switch in: %s\n", tree->attr.name);
           break;
         case CaseK:
-          fprintf(listing,"Case\n");
+          fprintf(listing,"Case \n");
           break;
         case AssignK:
           fprintf(listing,"Assign to: %s\n",tree->attr.name);
