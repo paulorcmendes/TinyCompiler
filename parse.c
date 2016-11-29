@@ -44,7 +44,7 @@ static void match(TokenType expected)
 TreeNode * stmt_sequence(void)
 { TreeNode * t = statement();
   TreeNode * p = t;
-  while ((token!=ENDFILE) && (token!=ENDSWITCH) && (token!=END) &&
+  while ((token!=ENDFILE) && (token!=ENDSWITCH) && (token!=CASE) && (token!=END) &&
          (token!=ELSE) && (token!=UNTIL))
   { TreeNode * q;
     match(SEMI);
@@ -102,14 +102,32 @@ TreeNode * repeat_stmt(void)
 
 static TreeNode * switch_stmt(void)
 { TreeNode * t = newStmtNode(SwitchK);
+  TreeNode * p = t;
+  TreeNode * q;
   match(SWITCH);
   match(LPAREN);
+  if ((t!=NULL) && (token==ID))
+    t->attr.name = copyString(tokenString);
   match(ID);
   match(RPAREN);
-  match(CASE);
-  match(NUM);
-  match(COLON);
-  if (t!=NULL) t->child[0] = stmt_sequence();
+  if(token == CASE){
+     t->child[0] = newStmtNode(CaseK);
+     p = t->child[0];
+	  match(CASE);
+	  match(NUM);
+	  match(COLON);
+	  if (p!=NULL) p->child[0] = stmt_sequence();
+  }
+  while(token == CASE){
+	  p->sibling = newStmtNode(CaseK);
+     q = p->sibling;
+	  match(CASE);
+	  match(NUM);
+	  match(COLON);
+	  if (q!=NULL) q->child[0] = stmt_sequence();	  
+	  p = p->sibling;
+  }
+  
   match(ENDSWITCH);
   return t;
 }

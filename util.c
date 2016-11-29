@@ -142,7 +142,10 @@ void printTree( TreeNode * tree )
           fprintf(listing,"Repeat\n");
           break;
         case SwitchK:
-          fprintf(listing,"Switch\n");
+          fprintf(listing,"Switch in: %s\n", tree->attr.name);
+          break;
+        case CaseK:
+          fprintf(listing,"Case\n");
           break;
         case AssignK:
           fprintf(listing,"Assign to: %s\n",tree->attr.name);
@@ -179,6 +182,7 @@ void printTree( TreeNode * tree )
     for (i=0;i<MAXCHILDREN;i++)
          printTree(tree->child[i]);
     tree = tree->sibling;
+	 //if(tree->kind.stmt == CaseK)	 fprintf(listing,"irmao");
   }
   UNINDENT;
 }

@@ -12,6 +12,16 @@ if 0 < x then
 	write fact;
 	switch (x1)
 		case 1:
-		 xwelt456 := x - 1
+			a := 3;
+			repeat 
+				pedro := pedro + 1
+			until pedro = 50		
+      case 2:
+			b := 3
+      case 3:
+			c := 3
 	endswitch
+else
+	a := 3;
+	write a
 end
