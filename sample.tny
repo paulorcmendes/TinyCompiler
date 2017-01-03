@@ -1,27 +1,12 @@
-{ Programa de exemplo
-  na linguagem TINY -
-	computa o fatorial
-}
 read x;{entrada de um inteiro}
-if 0 < x then
-	fact := 1;
-	repeat 
-		fact := fact * x;
-		x := x - 1
-	until x = 0;
+
 	write fact;
 	switch (x1)
-		case 1:
-			a := 3;
-			repeat 
-				pedro := pedro + 1
-			until pedro = 50		
-      case 2:
+		case 1+1:
+			a := 3		
+      		case 2:
 			b := 3
-      case 3:
+      		case 3:
 			c := 3
 	endswitch
-else
-	a := 3;
-	write a
-end
+

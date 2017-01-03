@@ -116,6 +116,7 @@ static TreeNode * switch_stmt(void)
 	  match(CASE);
 	  if ((p!=NULL) && (token==NUM)){
 	  	p->child[0] = newExpNode(ConstK);
+	  	if(p->child[0]!=NULL)
         p->child[0]->attr.val = atoi(tokenString);
       }
 	  match(NUM);
